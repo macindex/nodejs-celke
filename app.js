@@ -5,11 +5,11 @@ const app = express();
 
 app.get("/", function(req, res){
 
-    res.send("gerenciador financeiro");
+    res.sendFile(__dirname + "/src/index.html");
 });
 app.get("/sobre-empresa", function(req, res){
 
-    res.send("Página sobre empresa");
+    res.sendFile(__dirname + "/src/sobre-empresa.html");
 });
 
 
