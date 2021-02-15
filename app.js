@@ -1,7 +1,33 @@
 // var http = require('http');
 const express = require("express")
-
 const app = express();
+//conexão com db Mysql
+const mysql = require ('mysql');
+
+var connection = mysql.createConnection({
+    host     : 'localhost',
+    user     : 'claudio',
+    password : '123456',
+    database : 'celke'
+  });
+  
+  connection.connect(function(err) {
+    if (err) {
+      console.error('error connecting: ' + err.stack);
+      return;
+    }
+   
+    console.log('connected as id ' + connection.threadId);
+  });
+
+  connection.query('SELECT * FROM users', function(err, rows, fields){
+    if(!err){
+		console.log('resultado: ', rows);
+	}else{
+		console.log('Erro ao realizar a consulta');
+	}
+  });
+
 
 app.get("/", function(req, res){
 
