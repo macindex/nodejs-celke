@@ -16,6 +16,15 @@ var connection = mysql.createConnection({
     if (err) console.error('Erro ao realizar a conexão com BD: ' + err.stack); return;
   });
 
+  connection.query("UPDATE users SET nome = 'carmen1' WHERE id = 7", function(err, result){
+    if(!err){
+      console.log('Usuario editado com sucesso!');
+      }else{		
+      console.log('Erro: O usuario não foi  editado com sucesso!');	
+      }
+  });
+
+
   connection.query("INSERT INTO users(nome, email) VALUES ('jessica', 'jessica@gmail.com')", function(err, result){
     if(!err){
     console.log('Usuario cadastrado com sucesso!');
