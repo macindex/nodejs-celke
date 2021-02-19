@@ -15,6 +15,13 @@ var connection = mysql.createConnection({
   connection.connect(function(err){
     if (err) console.error('Erro ao realizar a conexão com BD: ' + err.stack); return;
   });
+  connection.query("DELETE FROM users WHERE id = 7", function(err, result){
+    if(!err){
+      console.log('Usuario apagado com sucesso!');
+      }else{		
+      console.log('Erro: O usuario não foi  apagado com sucesso!');	
+      }
+  });
 
   connection.query("UPDATE users SET nome = 'carmen1' WHERE id = 7", function(err, result){
     if(!err){
