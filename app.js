@@ -1,8 +1,9 @@
 const { Sequelize, Model, DataTypes } = require('sequelize');
 
 const sequelize = new Sequelize('celke', 'claudio', '123456',{
+// const sequelize = new Sequelize('celke', 'clau', '123456',{
   host: 'localhost',
-  dialect: 'mysql'/* one of */
+  dialect: 'mysql' /* one of mysql*/
 });
 
 sequelize.authenticate().then(function(){
@@ -10,6 +11,45 @@ sequelize.authenticate().then(function(){
 }).catch(function(err){
   console.log('Erro ao realizar conexão realizada com BD' + err);
 });
+
+// const { Sequelize, DataTypes } = require('sequelize');
+// const sequelize = new Sequelize('sqlite::memory:');
+
+// const User = sequelize.define('pagamentos', {
+//   // Model attributes are defined here
+//   nome: {
+//     type: Sequelize.STRING,
+//     // allowNull: false
+//   },
+//   valor: {
+//     type: Sequelize.DOUBLE
+//     // allowNull defaults to true
+//   }
+//   // Other model options go here
+// });
+
+
+//INSERINDO REGISTRO
+const Pagamento = sequelize.define('pagamentos', {
+  // Model attributes are defined here
+  nome: {
+    type: Sequelize.STRING,
+    // allowNull: false
+  },
+  valor: {
+    type: Sequelize.DOUBLE
+    // allowNull defaults to true
+  }
+  // Other model options go here
+});
+
+Pagamento.create({
+  nome: "Energia",
+  valor: 220
+})
+
+// Este comando irá criar tabela com sequelize
+//User.sync({force: true});
 
 // // var http = require('http');
 // const express = require("express")
