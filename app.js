@@ -1,16 +1,39 @@
-const { Sequelize, Model, DataTypes } = require('sequelize');
 
-const sequelize = new Sequelize('celke', 'claudio', '123456',{
-// const sequelize = new Sequelize('celke', 'clau', '123456',{
-  host: 'localhost',
-  dialect: 'mysql' /* one of mysql*/
-});
+// Handlebars
+// const express = require("express");
+// const app = express();
 
-sequelize.authenticate().then(function(){
-  console.log('Conexão realizada com sucesso');
-}).catch(function(err){
-  console.log('Erro ao realizar conexão realizada com BD' + err);
-});
+// const handlebars = require("handlebars");
+
+// console.log(template({ name: "Nils" }));
+
+// app.engine('handlebars', handlebars({defaultLayout: 'main'}))
+// app.set('view engine', 'handlebars')
+
+// //Rotas
+// app.get("/pagamento", function(req, res){
+//     res.render('./pagamento');
+// });
+
+// app.get("/add-pagamento", function(req, res){
+//   res.send("Formulário para cadastrar pagamento");
+// });
+
+
+
+// const { Sequelize, Model, DataTypes } = require('sequelize');
+
+// const sequelize = new Sequelize('celke', 'claudio', '123456',{
+// // const sequelize = new Sequelize('celke', 'clau', '123456',{
+//   host: 'localhost',
+//   dialect: 'mysql' /* one of mysql*/
+// });
+
+// sequelize.authenticate().then(function(){
+//   console.log('Conexão realizada com sucesso');
+// }).catch(function(err){
+//   console.log('Erro ao realizar conexão realizada com BD' + err);
+// });
 
 // const { Sequelize, DataTypes } = require('sequelize');
 // const sequelize = new Sequelize('sqlite::memory:');
@@ -30,23 +53,23 @@ sequelize.authenticate().then(function(){
 
 
 //INSERINDO REGISTRO
-const Pagamento = sequelize.define('pagamentos', {
+//const Pagamento = sequelize.define('pagamentos', {
   // Model attributes are defined here
-  nome: {
-    type: Sequelize.STRING,
+  // nome: {
+  //   type: Sequelize.STRING,
     // allowNull: false
-  },
-  valor: {
-    type: Sequelize.DOUBLE
+  // },
+  // valor: {
+  //   type: Sequelize.DOUBLE
     // allowNull defaults to true
-  }
+  //}
   // Other model options go here
-});
+// });
 
-Pagamento.create({
-  nome: "Energia",
-  valor: 220
-})
+// Pagamento.create({
+//   nome: "Energia",
+//   valor: 220
+// })
 
 // Este comando irá criar tabela com sequelize
 //User.sync({force: true});
@@ -132,7 +155,7 @@ Pagamento.create({
 // });
 
 // //localhost:8080
-// app.listen(8080);
+app.listen(8080);
 
 // // http.createServer(function(req, res){
 // // res.end("Gerenciador!");
