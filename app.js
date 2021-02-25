@@ -1,4 +1,95 @@
+const express = require("express");
+const app = express();
+const bodyParser = require('body-parser');
+const moment = require('moment');
+const Pagamento = require("./models/Pagamento");
 
+
+//parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }))
+ 
+//parse application/json
+app.use(bodyParser.json())
+
+app.get("/", function(req, res){
+
+  res.sendFile(__dirname + "/views/layouts/index.html");
+  // res.send("Guia para pagamentos");
+});
+app.get("/pagamento", function(req, res){
+  Pagamento.findAll({order: [['id', 'DESC' ]]}).then(function(pagamentos){
+    res.render('pagamento', {pagamentos: pagamentos});
+  })
+  res.sendFile(__dirname + "/views/pagamento.html");
+});
+app.get("/cad-pagamento", function(req, res){
+
+  res.sendFile(__dirname + "/views/cad-pagamento.html");
+});
+
+app.post("/add-pagamento", function(req, res){
+  Pagamento.create({
+    nome: req.body.nome,
+    valor: req.body.valor
+  }).then(function(){
+    res.redirect('/pagamento')
+    res.send("Pagamento cadastrado com sucesso")
+  }).catch(function(erro){
+    res.send("Erro: Pagamento não foi cadastrado com sucesso!" + erro)
+  })
+  res.send("Nome: " + req.body.nome + "<br>Valor: " + req.body.valor + "<br>");
+
+});
+
+//________________________________
+
+// AULA 13
+
+// const express = require("express");
+// const app = express();
+// const bodyParser = require('body-parser');
+// const pagamento = require("./models/Pagamento");
+
+
+// parse application/x-www-form-urlencoded
+// app.use(bodyParser.urlencoded({ extended: false }))
+ 
+// parse application/json
+// app.use(bodyParser.json())
+
+// app.get("/", function(req, res){
+
+//   res.sendFile(__dirname + "/views/layouts/index.html");
+//   // res.send("Guia para pagamentos");
+// });
+// app.get("/pagamento", function(req, res){
+
+//   res.sendFile(__dirname + "/views/pagamento.html");
+// });
+// app.get("/cad-pagamento", function(req, res){
+
+//   res.sendFile(__dirname + "/views/cad-pagamento.html");
+// });
+
+// app.post("/add-pagamento", function(req, res){
+//   pagamento.create({
+//     nome: req.body.nome,
+//     valor: req.body.valor
+//   }).then(function(){
+//     res.redirect('/pagamento')
+    //res.send("Pagamento cadastrado com sucesso")
+  // }).catch(function(erro){
+  //   res.send("Erro: Pagamento não foi cadastrado com sucesso!" + erro)
+  // })
+  //res.send("Nome: " + req.body.nome + "<br>Valor: " + req.body.valor + "<br>");
+
+//});
+//______________________________
+
+
+
+
+// Aula 12 Handlebars
 // Handlebars
 // const express = require("express");
 // const app = express();
@@ -155,7 +246,7 @@
 // });
 
 // //localhost:8080
-app.listen(8080);
+app.listen(8080)
 
 // // http.createServer(function(req, res){
 // // res.end("Gerenciador!");
