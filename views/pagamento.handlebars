@@ -1,1 +1,10 @@
 <h1>Listar pagamento</h1>
+
+{{#each pagamentos}}
+    ID: {{dataValues.id}}<br>
+    Nome: {{dataValues.nome}}<br>
+    Valor: {{dataValues.valor}}<br>
+    Cadastrado: {{#formatDate createdAt}}{{/formatDate}}<br>
+    <hr>
+{{/each}}
+
