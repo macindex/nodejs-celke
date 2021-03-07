@@ -3,8 +3,11 @@ const app = express();
 
 app.use(express.json());
 
-app.get("/", (req, res)=>{
+app.use(express.json());
 
+app.get("/", (req, res)=>{
+  // res.send("Introdução a API");
+  return res.json({titulo: "Criando uma API"});
 });
 
 app.listen(8080, ()=>{
@@ -334,7 +337,7 @@ app.listen(8080, ()=>{
 // });
 
 // //localhost:8080
-app.listen(8080)
+// app.listen(8080)
 
 // // http.createServer(function(req, res){
 // // res.end("Gerenciador!");
