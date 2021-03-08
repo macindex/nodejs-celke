@@ -1,9 +1,24 @@
+
 const express = require("express");
 const app = express();
+const mongoose = require('mongoose');
 
 app.use(express.json());
 
 app.use(express.json());
+
+ mongoose.connect('mongodb://localhost/celke', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+  // useFindAndModify: false,
+  // useCreateIndex: true
+}).then(() => {
+  console.log("Conexão com Mongodb realizada com sucesso!");
+}).catch((erro) => {
+  console.log("Erro: Conexão com Mongodb não realizada!"+ erro);
+
+});
+
 
 app.get("/", (req, res)=>{
   // res.send("Introdução a API");
@@ -13,7 +28,28 @@ app.get("/", (req, res)=>{
 app.listen(8080, ()=>{
   console.log("Servidor iniciado na porta 8080: http://localhost:8080/");
   
-})
+});
+//_________________________________________
+// AULA 16
+
+
+
+// const express = require("express");
+// const app = express();
+
+// app.use(express.json());
+
+// app.use(express.json());
+
+// app.get("/", (req, res)=>{
+  // res.send("Introdução a API");
+//   return res.json({titulo: "Criando uma API"});
+// });
+
+// app.listen(8080, ()=>{
+//   console.log("Servidor iniciado na porta 8080: http://localhost:8080/");
+  
+// })
 
 //_________________________________________
 // AULA 15
