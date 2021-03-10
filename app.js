@@ -3,7 +3,9 @@ const express = require("express");
 const app = express();
 const mongoose = require('mongoose');
 
-app.use(express.json());
+require("./models/Artigo");
+
+const Artigo = mongoose.model('artigo');
 
 app.use(express.json());
 
@@ -23,6 +25,10 @@ app.use(express.json());
 app.get("/", (req, res)=>{
   // res.send("Introdução a API");
   return res.json({titulo: "Criando uma API"});
+});
+
+app.post("/artigo", (req, res) => {
+  return res.json({titulo: "Criando uma API2"});
 });
 
 app.listen(8080, ()=>{
